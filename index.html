@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Santosh Katel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+ 
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      background: #f5f2ec;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+ 
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+ 
+    /* ── VARIABLES ── */
+    :root {
+      --ink:    #1a1a1a;
+      --paper:  #f5f2ec;
+      --rule:   #c8c2b4;
+      --muted:  #7a7469;
+      --accent: #b5341a;
+    }
+ 
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 3px double var(--rule);
+      padding: 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      z-index: 100;
+    }
+ 
+    .masthead-left {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+ 
+    .masthead-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+ 
+    .masthead-right {
+      display: flex;
+      gap: 1.75rem;
+    }
+ 
+    .masthead-right a {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .masthead-right a:hover { color: var(--ink); }
+ 
+    /* ── DATELINE ── */
+    .dateline {
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+      padding: 0.45rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+ 
+    /* ── HERO / COVER SPREAD ── */
+    .cover {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      min-height: 88vh;
+      border-bottom: 2px solid var(--ink);
+    }
+ 
+    /* left: text */
+    .cover-text {
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--rule);
+    }
+ 
+    .cover-kicker {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+ 
+    .cover-headline {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+    }
+ 
+    .cover-headline em {
+      font-style: italic;
+      font-weight: 400;
+    }
+ 
+    .cover-rule {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin: 2rem 0;
+    }
+ 
+    .cover-deck {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #3a3530;
+      max-width: 420px;
+    }
+ 
+    .cover-byline {
+      margin-top: auto;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+ 
+    .byline-dot {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      color: var(--paper);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.8rem;
+      font-style: italic;
+      flex-shrink: 0;
+    }
+ 
+    .byline-name {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .byline-sub {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      letter-spacing: 0.05em;
+    }
+ 
+    /* right: photo */
+    .cover-photo {
+      position: relative;
+      overflow: hidden;
+      background: #ccc;
+    }
+ 
+    .cover-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+ 
+    .cover-photo-caption {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+ 
+    /* ── COLUMNS LAYOUT ── */
+    .columns-section {
+      display: grid;
+      grid-template-columns: 2fr 1px 1.3fr;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+ 
+    .col-divider {
+      background: var(--rule);
+    }
+ 
+    /* ── ABOUT COLUMN ── */
+    .about-col {
+      padding: 3.5rem 3rem;
+    }
+ 
+    .col-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+ 
+    .col-label span { color: var(--accent); }
+ 
+    .about-headline {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .about-headline em { font-style: italic; font-weight: 400; }
+ 
+    .about-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: #3a3530;
+      columns: 2;
+      column-gap: 2rem;
+    }
+ 
+    .about-body p + p { margin-top: 1em; }
+ 
+    .about-pull {
+      margin: 2rem 0;
+      padding: 1.5rem 2rem;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+      column-span: all;
+      text-align: center;
+    }
+ 
+    /* ── SIDEBAR ── */
+    .sidebar {
+      padding: 3.5rem 2.5rem;
+      border-left: 1px solid var(--rule);
+    }
+ 
+    .sidebar-block + .sidebar-block {
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--rule);
+    }
+ 
+    .sidebar-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 1.5rem;
+    }
+ 
+    /* project cards in sidebar */
+    .project-card {
+      display: block;
+      padding: 1.5rem;
+      background: var(--ink);
+      color: var(--paper);
+      margin-bottom: 1rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .project-card:last-child { margin-bottom: 0; }
+ 
+    .project-card:hover { background: #2e2e2e; }
+ 
+    .project-card::after {
+      content: '↗';
+      position: absolute;
+      top: 1rem; right: 1rem;
+      font-size: 1rem;
+      color: rgba(245,242,236,0.3);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .project-card:hover::after {
+      color: rgba(245,242,236,0.8);
+      transform: translate(2px, -2px);
+    }
+ 
+    .project-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(245,242,236,0.4);
+      margin-bottom: 0.5rem;
+    }
+ 
+    .project-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+ 
+    .project-desc {
+      font-size: 0.78rem;
+      color: rgba(245,242,236,0.55);
+      line-height: 1.6;
+    }
+ 
+    .project-card.blog-card { background: var(--accent); }
+    .project-card.blog-card:hover { background: #9a2c15; }
+    .project-card.blog-card::after { color: rgba(245,242,236,0.5); }
+ 
+    /* facts list */
+    .facts-list {
+      list-style: none;
+    }
+    .facts-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.55rem 0;
+      border-bottom: 1px dotted var(--rule);
+      font-size: 0.8rem;
+    }
+    .facts-list li:last-child { border-bottom: none; }
+    .facts-key { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.05em; }
+    .facts-val { font-weight: 500; font-size: 0.82rem; }
+ 
+    /* ── FOOTER ── */
+    footer {
+      border-top: 3px double var(--rule);
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+ 
+    .footer-brand {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+ 
+    .footer-copy {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .masthead { padding: 1rem 1.5rem; }
+      .cover { grid-template-columns: 1fr; min-height: auto; }
+      .cover-photo { height: 55vw; min-height: 260px; border-right: none; border-bottom: 1px solid var(--rule); order: -1; }
+      .cover-text { padding: 2.5rem 1.5rem; border-right: none; }
+      .columns-section { grid-template-columns: 1fr; }
+      .col-divider { display: none; }
+      .about-body { columns: 1; }
+      .sidebar { border-left: none; border-top: 1px solid var(--rule); padding: 2.5rem 1.5rem; }
+      .about-col { padding: 2.5rem 1.5rem; }
+      footer { padding: 1.25rem 1.5rem; }
+    }
+ 
+  </style>
+</head>
+<body>
+ 
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-left">Kathmandu, Nepal</div>
+    <div class="masthead-title">Santosh Katel</div>
+    <nav class="masthead-right">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="mailto:you@email.com">Contact</a>
+    </nav>
+  </header>
+ 
+  <div class="dateline">Personal · Est. 2024 · Nepal Premier League · Cricket · Writing · Data</div>
+ 
+  <!-- COVER SPREAD -->
+  <section class="cover">
+ 
+    <div class="cover-text">
+      <div>
+        <p class="cover-kicker">Personal Website</p>
+        <h1 class="cover-headline">
+          Writing.<br>
+          Data.<br>
+          <em>Nepal.</em>
+        </h1>
+        <div class="cover-rule"></div>
+        <p class="cover-deck">
+          A personal corner of the internet for cricket statistics, stories from Kathmandu, and things I find worth putting into words.
+        </p>
+      </div>
+ 
+      <div class="cover-byline">
+        <div class="byline-dot">SK</div>
+        <div>
+          <div class="byline-name">Santosh Katel</div>
+          <div class="byline-sub">Writer · Cricket Data · Kathmandu</div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="cover-photo">
+      <!-- Replace cover.jpg with your photo file name -->
+      <img src="Cover.jpg" alt="Cover photo by Santosh Katel" />
+      <div class="cover-photo-caption">Photo by Santosh Katel</div>
+    </div>
+ 
+  </section>
+ 
+  <!-- ABOUT + SIDEBAR -->
+  <section class="columns-section" id="about">
+ 
+    <div class="about-col">
+      <div class="col-label">
+        <span>About</span>
+        <span>№ 01</span>
+      </div>
+ 
+      <h2 class="about-headline">
+        A person who <em>writes things down</em> and builds things on the internet.
+      </h2>
+ 
+      <div class="about-body">
+        <p>
+          I'm Santosh Katel, based in Kathmandu, Nepal. I spend my time writing about the things I care about — cricket, data, and life in Nepal — and building small projects on the internet that bring those ideas to life.
+        </p>
+ 
+        <blockquote class="about-pull">
+          "Cricket is not just a sport in Nepal — it's a story still being written."
+        </blockquote>
+ 
+        <p>
+          One of those projects is the NPL Player Stats site — a searchable database I built to track every player across the Nepal Premier League 2024 and 2025 seasons. Over 190 players, all their batting and bowling numbers, in one place.
+        </p>
+        <p>
+          I also write a personal blog where I put down thoughts on cricket, technology, travel, and whatever else catches my attention. No schedule, no algorithm — just writing when something feels worth saying.
+        </p>
+        <p>
+          If you want to get in touch, send me an email. I read everything.
+        </p>
+      </div>
+    </div>
+ 
+    <div class="col-divider"></div>
+ 
+    <aside class="sidebar" id="work">
+ 
+      <!-- Projects -->
+      <div class="sidebar-block">
+        <div class="sidebar-label">My Projects</div>
+ 
+        <a href="#" class="project-card blog-card">
+          <p class="project-tag">Writing · Personal</p>
+          <h3 class="project-name">My Blog</h3>
+          <p class="project-desc">Essays and thoughts on cricket, life, and Nepal. Updated whenever something feels worth writing.</p>
+        </a>
+ 
+        <a href="https://sinkwithme6.github.io/npl-players-stats/" target="_blank" class="project-card">
+          <p class="project-tag">Cricket · Data</p>
+          <h3 class="project-name">NPL Player Stats</h3>
+          <p class="project-desc">190+ players. Every stat from Nepal Premier League 2024 &amp; 2025.</p>
+        </a>
+      </div>
+ 
+      <!-- Quick facts -->
+      <div class="sidebar-block">
+        <div class="sidebar-label">Quick Facts</div>
+        <ul class="facts-list">
+          <li><span class="facts-key">Based in</span><span class="facts-val">Kathmandu 🇳🇵</span></li>
+          <li><span class="facts-key">Interests</span><span class="facts-val">Cricket, Data, Writing</span></li>
+          <li><span class="facts-key">NPL seasons</span><span class="facts-val">2024 &amp; 2025</span></li>
+          <li><span class="facts-key">Players tracked</span><span class="facts-val">190+</span></li>
+          <li><span class="facts-key">Contact</span><span class="facts-val">Email me</span></li>
+        </ul>
+      </div>
+ 
+    </aside>
+  </section>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Santosh Katel</div>
+    <div class="footer-copy">© 2025 · Kathmandu, Nepal · All rights reserved</div>
+  </footer>
+ 
+</body>
+</html>
